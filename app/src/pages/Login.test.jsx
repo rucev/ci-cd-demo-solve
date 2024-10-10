@@ -26,7 +26,7 @@ describe('Given a Login Page component', () => {
             const emailInput = screen.getByPlaceholderText(`your email`);
             const passwordInput = screen.getByPlaceholderText(`your password`);
             const submitButton = screen.getByText('sign in');
-            const changeViewLink = screen.getByText('Sign up!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+            const changeViewLink = screen.getByText('Sign up');
 
             expect(heading).toBeInTheDocument();
             expect(emailInput).toBeInTheDocument();
