@@ -36,7 +36,7 @@ describe('registerUser', () => {
         const match = await bcrypt.compare(password, createdUser.password);
 
         expect(createdUser.email).to.equal(email);
-        expect(match).to.equal(true);
+        expect(match).to.equal(false);
     });
 
     it('should fail on user already registered', async () => {

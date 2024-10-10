@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
         api.use(cors());
 
-        api.get('/api', (req, res) => { res.send('Hello Api!') })
+        api.get('/api', (req, res) => { res.send('Hello Api!!!!!!!!!') })
 
         api.post('/api/users', jsonBodyParser, handlers.registerUserHandler);
 
