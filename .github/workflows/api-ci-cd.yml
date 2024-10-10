@@ -1,0 +1,46 @@
+name: Deploy App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:8
+        ports:
+          - 27017:27017
+
+    steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 20
+        
+        - name: install & test
+          env:
+            PORT: 4321
+            MONGODB_URI: mongodb://127.0.0.1:27017/test-demo-ci-cd
+            JWT_SECRET: hola
+            JWT_EXPIRATION: 5d
+          run: |
+            cd api
+            npm i
+            npm run test
+            npm run start &
+            sleep 15
+            bash test.sh
+        
+        - name: deploy api
+          run: |
+            curl --request POST \
+                --url https://api.render.com/v1/services/${{secrets.RENDER_ID}}/deploys \
+                --header 'accept: application/json' \
+                --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}' \
+                --header 'content-type: application/json'
+
+
