@@ -27,7 +27,7 @@ main {
 h1 {
     margin-block-start: 0;
     margin-block-end: 0.1em;
-    color: orangered;
+    color: rgb(9, 255, 0);
     font-size: 2rem;
 }
 
